@@ -1,0 +1,80 @@
+.score-area {
+    margin-left: 200px;
+    display: inline-block;
+    height: 30px;
+}
+
+.score-area__heart {
+    width: auto;
+    font-size: 25px;
+    margin-left: 10px;
+    color: brown;
+}
+
+.score-area__score {
+    font-size: 25px;
+    display: inline-flex;
+    margin-left: 550px;
+    color: white;
+}
+
+.carrots {
+    height: 100px;
+    display: inline-flex;
+    position: absolute;
+}
+
+.rabbit {
+    height: 200px;
+    position: absolute;
+    bottom: 0px;
+    left: 450px;
+    display: none;
+}
+
+#carrot1 {
+    margin-left: 50px;
+    transition: top .5s;
+}
+
+#carrot2 {
+    margin-left: 250px;
+    transition: top .5s;
+}
+#carrot3 {
+    margin-left: 450px;
+    transition: top .5s;
+}
+#carrot4 {
+    margin-left: 650px;
+    transition: top .5s;
+}
+#carrot5 {
+    margin-left: 850px;
+    transition: top .5s;
+}
+#carrot6 {
+    margin-left: 1050px;
+    transition: top .5s;
+}
+.game-area {
+    /* border: 2px outset black; */
+    width:auto;
+    height: 500px;
+    background-color: transparent;
+    margin: 0px 30px 0px 30px; 
+    /* text-align: center; */
+}
+
+.btn {
+    text-align: center;
+    display: inline-flex;
+    font-family:  monospace; 
+    margin-left: 450px;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 20px 64px;
+    font-size: 40px;
+    position: absolute; 
+    bottom: 150px;
+}

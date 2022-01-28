@@ -1,0 +1,34 @@
+.box {
+    display: block;
+    position: relative;
+    margin: auto;
+    text-align: center;
+}
+
+h2{
+    text-align:center;
+    color: black;
+    font-size: 75px;
+}
+
+h2 {
+    margin: auto;
+    font-size: 80px;
+    font-family: 'Pacifico', cursive;
+}
+
+div {
+    animation-name: example;
+    animation-duration: 3s;  
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes example {
+    from {top: 0px;}
+    to {top: 200px;}
+}
+
+#game {
+    display: none;
+}
+  
