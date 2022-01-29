@@ -22,9 +22,19 @@
     height: 100px;
     display: inline-flex;
     position: absolute;
+    transition: top 1s;
 }
 
 .rabbit {
+    height: 200px;
+    position: absolute;
+    bottom: 0px;
+    left: 450px;
+    display: none;
+    transform: scalex(-1);
+}
+
+.boom {
     height: 200px;
     position: absolute;
     bottom: 0px;
@@ -34,28 +44,22 @@
 
 #carrot1 {
     margin-left: 50px;
-    transition: top .5s;
 }
 
 #carrot2 {
     margin-left: 250px;
-    transition: top .5s;
 }
 #carrot3 {
     margin-left: 450px;
-    transition: top .5s;
 }
 #carrot4 {
     margin-left: 650px;
-    transition: top .5s;
 }
 #carrot5 {
     margin-left: 850px;
-    transition: top .5s;
 }
 #carrot6 {
     margin-left: 1050px;
-    transition: top .5s;
 }
 .game-area {
     /* border: 2px outset black; */

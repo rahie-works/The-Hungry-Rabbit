@@ -6,4 +6,5 @@ body {
   background-image: url("https://i.pinimg.com/originals/ef/48/d2/ef48d217dc8e23a49277afc4dcf403c3.png");
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
 }

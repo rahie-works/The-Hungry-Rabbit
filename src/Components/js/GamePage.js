@@ -1,23 +1,27 @@
 import React, {useState} from 'react'
 import '../css/GamePage.css'
 import $ from 'jquery'
-import Rabbit from './Rabbit'
 
 const GamePage = () => {
 
-    const livesRemaining = () => {
+    const timings = [35,40,45,50,55,60,65,70,80,90]
+    const [score, setScore] = useState(0)
+    let scoreUpdate = 0
+    const [lives,setLives] = useState(5)
+
+    const livesRemaining = (noOfLives) => {
         let lifeIndicator = []
-        for (let index = 0; index < 5; index++) {
+        for (let index = 0; index < noOfLives; index++) {
            lifeIndicator.push(<i className='fas fa-heart score-area__heart'></i>)
         }
         return lifeIndicator
     }
 
     const carrotFlow1 = (steps) => {
-        let carrot = 1
-        let timing = Math.floor((Math.random() * 100) + 20)
+        let timing = timings[Math.floor(Math.random() * 10)]
+        let carrot = Math.floor((Math.random() * 10) + 1)
         setInterval(function() {
-            if(carrot === 9) {
+            if(carrot === 9 || carrot === 5) {
                 document.getElementById('carrot1').src = '/bomb.png';
             } else if (carrot === 7) {
                 document.getElementById('carrot1').src = '/carrots.png';
@@ -26,22 +30,23 @@ const GamePage = () => {
             }
             document.getElementById('carrot1').style.top = steps + 'px';
             $('#carrot1').show()
-            if(steps < 500 ) {
-               steps+= timing
+            if(steps < 450 ) {
+                steps+= timing
             } else {
+                checkFeed('#carrot1',document.getElementById('carrot1').src)
                 steps=65
                 $('#carrot1').hide()
-                timing = Math.floor((Math.random() * 100) + 20)
                 carrot = Math.floor((Math.random() * 10) + 1)
+                timing = timings[Math.floor(Math.random() * 10)]
             }
-        },Math.floor((Math.random() * 1000) + 100))
+        },Math.floor((Math.random() * 1000) + 200))
     }
 
     const carrotFlow2 = (steps) => {
-        let carrot = 1
-        let timing = Math.floor((Math.random() * 100) + 20)
+        let timing = timings[Math.floor(Math.random() * 10)]
+        let carrot = Math.floor((Math.random() * 10) + 1)
         setInterval(function() {
-            if(carrot === 9) {
+            if(carrot === 9 || carrot === 5) {
                 document.getElementById('carrot2').src = '/bomb.png';
             }else if (carrot === 7) {
                 document.getElementById('carrot2').src = '/carrots.png';
@@ -50,22 +55,23 @@ const GamePage = () => {
             }
             document.getElementById('carrot2').style.top = steps + 'px';
             $('#carrot2').show()
-            if(steps < 500 ) {
+            if(steps < 450 ) {
                 steps+= timing
             } else {
+                checkFeed('#carrot2',document.getElementById('carrot2').src)
                 steps=65
                 $('#carrot2').hide()
-                timing = Math.floor((Math.random() * 100) + 20)
                 carrot = Math.floor((Math.random() * 10) + 1)
+                timing = timings[Math.floor(Math.random() * 10)]
             }
-        },Math.floor((Math.random() * 1000) + 100))
+        },Math.floor((Math.random() * 1000) + 200))
     }
 
     const carrotFlow3 = (steps) => {
-        let carrot = 1
-        let timing = Math.floor((Math.random() * 100) + 20)
+        let timing = timings[Math.floor(Math.random() * 10)]
+        let carrot = Math.floor((Math.random() * 10) + 1)
         setInterval(function() {
-            if(carrot === 9) {
+            if(carrot === 9 || carrot === 5) {
                 document.getElementById('carrot3').src = '/bomb.png';
             } else if (carrot === 7) {
                 document.getElementById('carrot3').src = '/carrots.png';
@@ -74,22 +80,23 @@ const GamePage = () => {
             }
             document.getElementById('carrot3').style.top = steps + 'px';
             $('#carrot3').show()
-            if(steps < 500 ) {
+            if(steps < 450 ) {
                 steps+= timing
             } else {
+                checkFeed('#carrot3',document.getElementById('carrot3').src)
                 steps=65
                 $('#carrot3').hide()
-                timing = Math.floor((Math.random() * 100) + 20)
                 carrot = Math.floor((Math.random() * 10) + 1)
+                timing = timings[Math.floor(Math.random() * 10)]
             }
-        },Math.floor((Math.random() * 1000) + 100))
+        },Math.floor((Math.random() * 1000) + 200))
     }
 
     const carrotFlow4 = (steps) => {
-        let carrot = 1
-        let timing = Math.floor((Math.random() * 100) + 20)
+        let timing = timings[Math.floor(Math.random() * 10)]
+        let carrot = Math.floor((Math.random() * 10) + 1)
         setInterval(function() {
-            if(carrot === 9) {
+            if(carrot === 9 || carrot === 5) {
                 document.getElementById('carrot4').src = '/bomb.png';
             } else if (carrot === 7) {
                 document.getElementById('carrot4').src = '/carrots.png';
@@ -98,22 +105,23 @@ const GamePage = () => {
             }
             document.getElementById('carrot4').style.top = steps + 'px';
             $('#carrot4').show()
-            if(steps < 500 ) {
+            if(steps < 450 ) {
                 steps+= timing
             } else {
+                checkFeed('#carrot4',document.getElementById('carrot4').src)
                 steps=65
                 $('#carrot4').hide() 
-                timing = Math.floor((Math.random() * 100) + 20)
                 carrot = Math.floor((Math.random() * 10) + 1)
+                timing = timings[Math.floor(Math.random() * 10)]
             }
-        },Math.floor((Math.random() * 1000) + 100))
+        },Math.floor((Math.random() * 1000) + 200))
     }
 
     const carrotFlow5 = (steps) => {
-        let carrot = 1
-        let timing = Math.floor((Math.random() * 100) + 20)
-        setInterval(function() {
-            if(carrot === 9) {
+        let timing = timings[Math.floor(Math.random() * 10)]
+        let carrot = Math.floor((Math.random() * 10) + 1)
+        setInterval(function () {
+            if(carrot === 9 || carrot === 5) {
                 document.getElementById('carrot5').src = '/bomb.png';
             } else if (carrot === 7) {
                 document.getElementById('carrot5').src = '/carrots.png';
@@ -122,22 +130,23 @@ const GamePage = () => {
             }
             document.getElementById('carrot5').style.top = steps + 'px';
             $('#carrot5').show()
-            if(steps < 500 ) {
+            if(steps < 450 ) {
                 steps+= timing
             } else {
+                checkFeed('#carrot5',document.getElementById('carrot5').src)
                 steps=65
                 $('#carrot5').hide()
-                timing = Math.floor((Math.random() * 100) + 20)
                 carrot = Math.floor((Math.random() * 10) + 1)
+                timing = timings[Math.floor(Math.random() * 10)]
             }
-        },Math.floor((Math.random() * 1000) + 100))
+        },Math.floor((Math.random() * 1000) + 200))
     }
 
     const carrotFlow6 = (steps) => {
-        let carrot = 1
-        let timing = Math.floor((Math.random() * 100) + 20)
+        let timing = timings[Math.floor(Math.random() * 10)]
+        let carrot = Math.floor((Math.random() * 10) + 1)
         setInterval(function() {
-            if(carrot === 9) {
+            if(carrot === 9 || carrot === 5) {
                 document.getElementById('carrot6').src = '/bomb.png';
             } else if (carrot === 7) {
                 document.getElementById('carrot6').src = '/carrots.png';
@@ -146,20 +155,31 @@ const GamePage = () => {
             }
             document.getElementById('carrot6').style.top = steps + 'px';
             $('#carrot6').show()
-            if(steps < 500 ) {
+            if(steps< 450 ) {
                 steps+= timing
             } else {
+                checkFeed('#carrot6',document.getElementById('carrot6').src)
                 steps=65
                 $('#carrot6').hide()
-                timing = Math.floor((Math.random() * 100) + 20)
                 carrot = Math.floor((Math.random() * 10) + 1)
+                timing = timings[Math.floor(Math.random() * 10)]
             }
-        },Math.floor((Math.random() * 1000) + 100))
+        },Math.floor((Math.random() * 1000) + 200))
     }
 
-    
+    const checkFeed = (carrotId,source) => {
+        if($('.rabbit').css('left') === $(carrotId).css('margin-left') && source.includes('/carrot.png')) {
+            scoreUpdate+=10
+            setScore(scoreUpdate)
+        } else if ($('.rabbit').css('left') === $(carrotId).css('margin-left') && source.includes('/bomb.png')) {
+            $('.rabbit').hide()
+            $('.boom').css('left', $('.rabbit').css('left'))
+            $('.boom').show()
+        }
+    } 
 
     const startGame = () => {
+        $('.boom').hide()
         $('.btn').hide();
         $('.rabbit').css('display', 'inline-flex')
         carrotFlow1(65)
@@ -170,11 +190,23 @@ const GamePage = () => {
         carrotFlow6(65)
     }
 
+    document.onkeydown = (event) => {
+        if(event.key === 'ArrowLeft') {
+            if($('.rabbit').css('left') != '0px') {
+                $('.rabbit').css('left', '-=50px');
+            }
+        } else if (event.key === 'ArrowRight') {
+            if($('.rabbit').css('left') != '1050px') {
+                $('.rabbit').css('left', '+=50px');
+            }
+        }
+    }
+
     return (
         <div id='all'>
             <div className='score-area'>
-                {livesRemaining()}
-                <h4 className='score-area__score'>Score :</h4>
+                {livesRemaining(lives)}
+                <h4 className='score-area__score'>Score : {score}</h4>
             </div>
             <div className='game-area'>
                 <div><img className='carrots' id='carrot1' src="/carrot.png" alt='carrot'/></div>
@@ -187,6 +219,7 @@ const GamePage = () => {
                 <button className='btn' onClick={startGame}>START</button>
             <div>
                 <div><img className='rabbit' id='bunny' src='/bunny.png' alt='bunny'/></div>
+                <div><img className='boom' id='blast' src='/boom.png' alt='busted'/></div>
             </div>
         </div>
     )
