@@ -1,26 +1,102 @@
+#all {
+    position: absolute;
+}
+
+.startBox {
+    display: inline-flex;
+    /* justify-content: center; */
+    align-items: center;
+    background-color: #09e0ce;
+    position: absolute;
+    margin-top: -140px;
+}
+
+.startBox span {
+    text-align: center;
+    display: none;
+    color: red;
+    position: absolute;
+    margin-left: 380px;
+    bottom: 160px;
+    height: 45px;
+    width: 500px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.startBox input {
+    position: absolute;
+    display: flex;
+    width: 275px;
+    margin-left: 490px;
+    bottom: 130px;
+    height: 45px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
 .score-area {
     margin-left: 200px;
-    display: inline-block;
+    display: none;
     height: 30px;
 }
 
-.score-area__heart {
-    width: auto;
-    font-size: 25px;
+.heart {
     margin-left: 10px;
+}
+
+.score-area__heart {
+    font-size: 25px;
+    margin-left: 450px;
+    margin-top:20px;
     color: brown;
+    display: inline-flex;
 }
 
 .score-area__score {
     font-size: 25px;
     display: inline-flex;
-    margin-left: 550px;
-    color: white;
+    color: rgb(255, 209, 209);
+    width: 200px;
+}
+
+.pauseBtn {
+    top: 10px;
+    right: -250px;
+    width: fit-content;
+    opacity: 0.5;
+    color: antiquewhite;
+    position: absolute;
+}
+
+.pauseBtn:hover {
+    opacity: 1;
+    color: azure;
+}
+
+#gameOver {
+    width: auto;
+    display: none;
+    z-index: 10;
+    position: absolute;
+    top: 130px;
+    left: 50%;
+}
+
+#pausedPage {
+    width: auto;
+    display: none;
+    z-index: 10;
+    position: absolute;
+    top: 130px;
+    left: 50%;
 }
 
 .carrots {
     height: 100px;
-    display: inline-flex;
+    display: none;
     position: absolute;
     transition: top 1s;
 }
@@ -44,41 +120,61 @@
 
 #carrot1 {
     margin-left: 50px;
+    top: 65px;
 }
 
 #carrot2 {
     margin-left: 250px;
+    top: 65px;
 }
 #carrot3 {
     margin-left: 450px;
+    top: 65px;
 }
 #carrot4 {
     margin-left: 650px;
+    top: 65px;
 }
 #carrot5 {
     margin-left: 850px;
+    top: 65px;
 }
 #carrot6 {
     margin-left: 1050px;
+    top: 65px;
 }
 .game-area {
     /* border: 2px outset black; */
     width:auto;
     height: 500px;
     background-color: transparent;
-    margin: 0px 30px 0px 30px; 
+    margin: 0px 30px 0px 30px;
     /* text-align: center; */
 }
 
 .btn {
+    background-color: #c58000; /* Green */
     text-align: center;
-    display: inline-flex;
+    display: flex;
     font-family:  monospace; 
-    margin-left: 450px;
+    margin-left: 525px;
     cursor: pointer;
     border-radius: 8px;
-    padding: 20px 64px;
+    padding: 10px 54px;
     font-size: 40px;
     position: absolute; 
-    bottom: 150px;
+    bottom: 50px;
 }
+
+.btn:hover {
+    box-shadow: 0px 12px 12px 0px rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: #09e0ce;
+    color: black;
+  }
+
+  .btn:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(10px);
+  }
+  

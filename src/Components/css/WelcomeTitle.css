@@ -5,19 +5,15 @@
     text-align: center;
 }
 
-h2{
+h2 {
     text-align:center;
     color: black;
-    font-size: 75px;
-}
-
-h2 {
     margin: auto;
     font-size: 80px;
     font-family: 'Pacifico', cursive;
 }
 
-div {
+#main div {
     animation-name: example;
     animation-duration: 3s;  
     animation-fill-mode: forwards;

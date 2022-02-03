@@ -10,6 +10,10 @@ const WelcomeTitle = () => {
         document.getElementById('game').style.display = 'block'
     }
 
+    const exitPage = () => {
+        window.location.replace('https://www.google.com')
+    }
+
     return (
         <section>
             <section id='main'>

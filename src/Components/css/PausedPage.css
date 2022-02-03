@@ -1,0 +1,64 @@
+.pause__card {
+    left: 50%;
+    top: 300%;
+    width: 360px;
+    position: absolute;
+    transform: translate(-50%, -25%);
+    display: block;
+}
+
+.hs__card {
+    left: 50%;
+    top: 300%;
+    width: 360px;
+    position: absolute;
+    transform: translate(-50%, -25%);
+    display: none;
+}
+
+
+h3 {
+    text-align: center;
+    font-size: 50px;
+}
+
+h4 {
+    text-align: center;
+    font-size: 30px;
+}
+
+.actions button{
+    display: block;
+    width: 200px;
+    height: 50px;
+    font-size: 30px;
+    align-content: center; 
+    background-color: #c58000;
+    border: none;
+    color: white;
+    text-align: center;
+    font-family:  monospace; 
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transform: translate(35%,-25%);
+}
+
+.actions button:hover {
+    box-shadow: 0px 12px 12px 0px rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: #09e0ce;
+    color: black;
+}
+
+.actions button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    /* transform:translateY(0.5px) */
+  }
+
+.hs-list {
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    display: none;
+}
