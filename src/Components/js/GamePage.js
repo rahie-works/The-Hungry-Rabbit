@@ -10,9 +10,7 @@ const GamePage = () => {
     const [score, setScore] = useState(0)
     let scoreUpdate = 0
     const [lives,setLives] = useState(1)
-    let gameFreeze = false
     let newGameVariable = false
-    const [gameFlow, setGameFlow] = useState()
 
     const firstCarrot = useRef('/carrot.png')
     const secondCarrot = useRef('/carrot.png')
@@ -33,7 +31,7 @@ const GamePage = () => {
 
     const livesRemaining = (noOfLives) => {
         let lifeIndicator = []
-        if(noOfLives != 0) {
+        if(noOfLives !== 0) {
             for (let index = 0; index < noOfLives; index++) {
                 lifeIndicator.push(<i className='fas fa-heart heart'></i>)
              }
@@ -49,58 +47,56 @@ const GamePage = () => {
         let carrot = Math.floor((Math.random() * 10) + 1)
         let timing = timings[Math.floor(Math.random() * 10)]
         const flow = window.setInterval(function() {
-            if(!gameFreeze) {
-                if(carrot === 9 || carrot === 5) {
-                    firstCarrot.current.src = '/bomb.png';
-                } else if (carrot === 7) {
-                    firstCarrot.current.src = '/carrots.png';
-                }else {
-                    firstCarrot.current.src = '/carrot.png';
-                }
-                firstCarrot.current.style.top = steps + 'px';
-                firstCarrot.current.style.display = 'inline-flex'
-                if(steps < 450 ) {
-                    steps+= timing
-                } else {
-                    checkFeed('50px',firstCarrot.current.src)
-                    steps=65
-                    firstCarrot.current.style.display = 'none'
-                    carrot = Math.floor((Math.random() * 10) + 1)
-                    timing = timings[Math.floor(Math.random() * 10)]
-                }
-        }
-        if(newGameVariable) {
-            clearInterval(flow)
-            newGameVariable = false
-        } },Math.floor((Math.random() * 1000) + 200))
+            if(carrot === 9 || carrot === 5) {
+                firstCarrot.current.src = '/bomb.png';
+            } else if (carrot === 7) {
+                firstCarrot.current.src = '/carrots.png';
+            }else {
+                firstCarrot.current.src = '/carrot.png';
+            }
+            firstCarrot.current.style.top = steps + 'px';
+            firstCarrot.current.style.display = 'inline-flex'
+            if(steps < 450 ) {
+                steps+= timing
+            } else {
+                checkFeed('50px',firstCarrot.current.src)
+                steps=65
+                firstCarrot.current.style.display = 'none'
+                carrot = Math.floor((Math.random() * 10) + 1)
+                timing = timings[Math.floor(Math.random() * 10)]
+            }
+            if(newGameVariable) {
+                clearInterval(flow)
+                newGameVariable = false
+            } 
+        },Math.floor((Math.random() * 1000) + 200))
     }
 
     const carrotFlow2 = (steps) => {
         let carrot = Math.floor((Math.random() * 10) + 1)
         let timing = timings[Math.floor(Math.random() * 10)]
         const flow = window.setInterval(function() {
-            if(!gameFreeze) {
-                if(carrot === 9 || carrot === 5) {
-                    secondCarrot.current.src =  '/bomb.png';
-                } else if (carrot === 7) {
-                    secondCarrot.current.src = '/carrots.png';
-                }else {
-                    secondCarrot.current.src = '/carrot.png';
-                }
-                secondCarrot.current.style.top = steps + 'px';
-                secondCarrot.current.style.display = 'inline-flex'
-                if(steps < 450 ) {
-                    steps+= timing
-                } else {
-                    checkFeed('250px',secondCarrot.current.src)
-                    steps=65
-                    secondCarrot.current.style.display = 'none'
-                    carrot = Math.floor((Math.random() * 10) + 1)
-                    timing = timings[Math.floor(Math.random() * 10)]
-                }
+            if(carrot === 9 || carrot === 5) {
+                secondCarrot.current.src =  '/bomb.png';
+            } else if (carrot === 7) {
+                secondCarrot.current.src = '/carrots.png';
+            }else {
+                secondCarrot.current.src = '/carrot.png';
+            }
+            secondCarrot.current.style.top = steps + 'px';
+            secondCarrot.current.style.display = 'inline-flex'
+            if(steps < 450 ) {
+                steps+= timing
+            } else {
+                checkFeed('250px',secondCarrot.current.src)
+                steps=65
+                secondCarrot.current.style.display = 'none'
+                carrot = Math.floor((Math.random() * 10) + 1)
+                timing = timings[Math.floor(Math.random() * 10)]
             }
             if(newGameVariable) {
                 clearInterval(flow)
+                newGameVariable = false
             } 
         },Math.floor((Math.random() * 1000) + 200))
     }
@@ -109,28 +105,27 @@ const GamePage = () => {
         let carrot = Math.floor((Math.random() * 10) + 1)
         let timing = timings[Math.floor(Math.random() * 10)]
         const flow = window.setInterval(function() {
-            if(!gameFreeze) {
-                if(carrot === 9 || carrot === 5) {
-                    thirdCarrot.current.src =  '/bomb.png';
-                } else if (carrot === 7) {
-                    thirdCarrot.current.src = '/carrots.png';
-                }else {
-                    thirdCarrot.current.src = '/carrot.png';
-                }
-                thirdCarrot.current.style.top = steps + 'px';
-                thirdCarrot.current.style.display = 'inline-flex'
-                if(steps < 450 ) {
-                    steps+= timing
-                } else {
-                    checkFeed('450px', thirdCarrot.current.src)
-                    steps=65
-                    thirdCarrot.current.style.display = 'none'
-                    carrot = Math.floor((Math.random() * 10) + 1)
-                    timing = timings[Math.floor(Math.random() * 10)]
-                }
+            if(carrot === 9 || carrot === 5) {
+                thirdCarrot.current.src =  '/bomb.png';
+            } else if (carrot === 7) {
+                thirdCarrot.current.src = '/carrots.png';
+            }else {
+                thirdCarrot.current.src = '/carrot.png';
+            }
+            thirdCarrot.current.style.top = steps + 'px';
+            thirdCarrot.current.style.display = 'inline-flex'
+            if(steps < 450 ) {
+                steps+= timing
+            } else {
+                checkFeed('450px', thirdCarrot.current.src)
+                steps=65
+                thirdCarrot.current.style.display = 'none'
+                carrot = Math.floor((Math.random() * 10) + 1)
+                timing = timings[Math.floor(Math.random() * 10)]
             }
             if(newGameVariable) {
                 clearInterval(flow)
+                newGameVariable = false
             }
         },Math.floor((Math.random() * 1000) + 200))
     }
@@ -139,28 +134,27 @@ const GamePage = () => {
         let carrot = Math.floor((Math.random() * 10) + 1)
         let timing = timings[Math.floor(Math.random() * 10)]
         const flow = window.setInterval(function() {
-            if(!gameFreeze) {
-                if(carrot === 9 || carrot === 5) {
-                    forthCarrot.current.src =  '/bomb.png';
-                } else if (carrot === 7) {
-                    forthCarrot.current.src = '/carrots.png';
-                }else {
-                    forthCarrot.current.src = '/carrot.png';
-                }
-                forthCarrot.current.style.top = steps + 'px';
-                forthCarrot.current.style.display = 'inline-flex'
-                if(steps < 450 ) {
-                    steps+= timing
-                } else {
-                    checkFeed('650px', forthCarrot.current.src)
-                    steps=65
-                    forthCarrot.current.style.display = 'none'
-                    carrot = Math.floor((Math.random() * 10) + 1)
-                    timing = timings[Math.floor(Math.random() * 10)]
-                }
+            if(carrot === 9 || carrot === 5) {
+                forthCarrot.current.src =  '/bomb.png';
+            } else if (carrot === 7) {
+                forthCarrot.current.src = '/carrots.png';
+            }else {
+                forthCarrot.current.src = '/carrot.png';
+            }
+            forthCarrot.current.style.top = steps + 'px';
+            forthCarrot.current.style.display = 'inline-flex'
+            if(steps < 450 ) {
+                steps+= timing
+            } else {
+                checkFeed('650px', forthCarrot.current.src)
+                steps=65
+                forthCarrot.current.style.display = 'none'
+                carrot = Math.floor((Math.random() * 10) + 1)
+                timing = timings[Math.floor(Math.random() * 10)]
             }
             if(newGameVariable) {
                 clearInterval(flow)
+                newGameVariable = false
             }
         },Math.floor((Math.random() * 1000) + 200))
     }
@@ -169,28 +163,27 @@ const GamePage = () => {
         let carrot = Math.floor((Math.random() * 10) + 1)
         let timing = timings[Math.floor(Math.random() * 10)]
         const flow = window.setInterval(function() {
-            if(!gameFreeze) {
-                if(carrot === 9 || carrot === 5) {
-                    fifthCarrot.current.src = '/bomb.png';
-                } else if (carrot === 7) {
-                    fifthCarrot.current.src = '/carrots.png';
-                }else {
-                    fifthCarrot.current.src = '/carrot.png';
-                }
-                fifthCarrot.current.style.top = steps + 'px';
-                fifthCarrot.current.style.display = 'inline-flex'
-                if(steps < 450 ) {
-                    steps+= timing
-                } else {
-                    checkFeed('850px', fifthCarrot.current.src)
-                    steps=65
-                    fifthCarrot.current.style.display = 'none'
-                    carrot = Math.floor((Math.random() * 10) + 1)
-                    timing = timings[Math.floor(Math.random() * 10)]
-                }
+            if(carrot === 9 || carrot === 5) {
+                fifthCarrot.current.src = '/bomb.png';
+            } else if (carrot === 7) {
+                fifthCarrot.current.src = '/carrots.png';
+            }else {
+                fifthCarrot.current.src = '/carrot.png';
+            }
+            fifthCarrot.current.style.top = steps + 'px';
+            fifthCarrot.current.style.display = 'inline-flex'
+            if(steps < 450 ) {
+                steps+= timing
+            } else {
+                checkFeed('850px', fifthCarrot.current.src)
+                steps=65
+                fifthCarrot.current.style.display = 'none'
+                carrot = Math.floor((Math.random() * 10) + 1)
+                timing = timings[Math.floor(Math.random() * 10)]
             }
             if(newGameVariable) {
                 clearInterval(flow)
+                newGameVariable = false
             }
         },Math.floor((Math.random() * 1000) + 200))
     }
@@ -199,28 +192,27 @@ const GamePage = () => {
         let carrot = Math.floor((Math.random() * 10) + 1)
         let timing = timings[Math.floor(Math.random() * 10)]
         const flow = window.setInterval(function() {
-            if(!gameFreeze) {
-                if(carrot === 9 || carrot === 5) {
-                    sixthCarrot.current.src = '/bomb.png';
-                } else if (carrot === 7) {
-                    sixthCarrot.current.src = '/carrots.png';
-                }else {
-                    sixthCarrot.current.src = '/carrot.png';
-                }
-                sixthCarrot.current.style.top = steps + 'px';
-                sixthCarrot.current.style.display = 'inline-flex'
-                if(steps < 450 ) {
-                    steps+= timing
-                } else {
-                    checkFeed('1050px',sixthCarrot.current.src)
-                    steps=65
-                    sixthCarrot.current.style.display = 'none'
-                    carrot = Math.floor((Math.random() * 10) + 1)
-                    timing = timings[Math.floor(Math.random() * 10)]
-                }
+            if(carrot === 9 || carrot === 5) {
+                sixthCarrot.current.src = '/bomb.png';
+            } else if (carrot === 7) {
+                sixthCarrot.current.src = '/carrots.png';
+            }else {
+                sixthCarrot.current.src = '/carrot.png';
+            }
+            sixthCarrot.current.style.top = steps + 'px';
+            sixthCarrot.current.style.display = 'inline-flex'
+            if(steps < 450 ) {
+                steps+= timing
+            } else {
+                checkFeed('1050px',sixthCarrot.current.src)
+                steps=65
+                sixthCarrot.current.style.display = 'none'
+                carrot = Math.floor((Math.random() * 10) + 1)
+                timing = timings[Math.floor(Math.random() * 10)]
             }
             if(newGameVariable) {
                 clearInterval(flow)
+                newGameVariable = false
             }
         },Math.floor((Math.random() * 1000) + 200))
     }
@@ -250,12 +242,11 @@ const GamePage = () => {
         gameSectionRef.current.style.opacity = 1
         rabbitRef.current.style.left = position[Math.floor(Math.random() * 10)]+'px'
         rabbitRef.current.style.display = 'inline-flex'
-        gameFreeze = false
     }
 
     const sortByScore = (a, b) => {
-        if(a.level > b.level) return -1;
-        if(a.level < b.level) return 1;
+        if(a.score > b.score) return -1;
+        if(a.score < b.score) return 1;
         return 0;
     };
 
@@ -263,10 +254,12 @@ const GamePage = () => {
         let storeScore = null
         if("highscore" in localStorage){
             let highScoreData = JSON.parse(localStorage.getItem("highscore"));
+            // console.log('initial', highScoreData)
             if(highScoreData.length >=5 && highScoreData[highScoreData.length-1].score > score) {
+                console.log(1)
                 return
             }
-            highScoreData.push({name: nameInput.current.value, score: score})
+            // highScoreData.push({name: nameInput.current.value, score: score})
             highScoreData.sort(sortByScore)
             storeScore = highScoreData.slice(0,5)
         } else {
@@ -279,15 +272,15 @@ const GamePage = () => {
         gameOverPageRef.current.style.display = "block"
         scoreAreaRef.current.style.display = 'none'
         gameSectionRef.current.style.opacity = 0.5
-        rabbitRef.current.style.left = '0px'
         rabbitRef.current.style.display = 'none'
+        rabbitRef.current.style.left = '0px'
     }
 
     const pausePressed = () => {
-        gameFreeze = true
         pausedPageRef.current.style.display = "block"
         gameSectionRef.current.style.opacity = 0.5
         rabbitRef.current.style.display = 'none'
+        rabbitRef.current.style.left = '0px'
     }
 
     const exitGame = () => {

@@ -5,27 +5,28 @@ const GameOver = (props) => {
 
     const hsRef = useRef('')
     const overRef = useRef('')
-    const [displayHS,setDisplayHS] = useState('')
+    const [hs,setHS] = useState('no data')
 
     const newGame = () => {
         props.newGameCalled()
     }
 
     const showHighScore = () => {
-        let display = ""
         if("highscore" in localStorage) {
             const highScoreData = JSON.parse(localStorage.getItem("highscore"))
-            display += '<ol class="hs-list">'
-            highScoreData.forEach(element => {
-                display += '<li>'+ element.name +' - Score '+ element.score +'</li>'
+            const highScoreDisplay = highScoreData.map(element => {
+                console.log('Element :', element)
+                return <h4>{element.name} : {element.score}</h4>
             });
-            display += '</ol>'
-        } else {
-            display = '<p>No High Score Found!</p>';
+            setHS(highScoreDisplay)
         }
-        setDisplayHS(display)
+    }
+
+    const showHS = () => {
         overRef.current.style.display = 'none'
         hsRef.current.style.display = 'block'
+        showHighScore()
+        console.log(hs)
     }
 
     return (
@@ -34,14 +35,16 @@ const GameOver = (props) => {
                 <h3>GAME OVER</h3>
                 <h4>Your Score: {props.playerScore}</h4>
                 <div className='actions'>
-                    <button onClick={showHighScore}>High Score</button>
+                    <button onClick={showHS}>High Score</button>
                     <button onClick={newGame}>Main Menu</button>
                 </div>
             </div>
-            <div class="hs__card" ref={hsRef}>
-                <h1>High Score</h1>
-                <div>{displayHS}</div>
-                <button>Back</button>
+            <div className="hs__card" ref={hsRef}>
+                <h4>High Score</h4>
+                {hs}
+                <div className='actions'>
+                    <button onClick={newGame}>Back</button>
+                </div>
             </div>
         </section>
     )
