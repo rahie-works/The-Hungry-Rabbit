@@ -9,8 +9,10 @@ const GamePage = () => {
 
     const [score, setScore] = useState(0)
     let scoreUpdate = 0
-    const [lives,setLives] = useState(1)
-    let newGameVariable = false
+    const [lives,setLives] = useState([<i className='fas fa-heart heart'></i>,<i className='fas fa-heart heart'></i>,
+    <i className='fas fa-heart heart'></i>,<i className='fas fa-heart heart'></i>,<i className='fas fa-heart heart'></i>])
+    let length = lives.length
+    let newGameVariable = useRef(false)
 
     const firstCarrot = useRef('/carrot.png')
     const secondCarrot = useRef('/carrot.png')
@@ -29,16 +31,17 @@ const GamePage = () => {
     const nameInput = useRef('')
     const spanRef = useRef('')
 
-    const livesRemaining = (noOfLives) => {
-        let lifeIndicator = []
-        if(noOfLives !== 0) {
-            for (let index = 0; index < noOfLives; index++) {
-                lifeIndicator.push(<i className='fas fa-heart heart'></i>)
-             }
-             return lifeIndicator
+    const livesRemaining = (length) => {
+        console.log('Length',length)
+        const heartArray = []
+        if(length !== 0) {
+            for (let index = 0; index < length; index++) {
+                heartArray.push(<i className='fas fa-heart heart'></i>)
+            }
+            console.log('Array',heartArray)
+            setLives(heartArray)
         } else {
-            storeHighScore()
-            setTimeout(gameOverFun,3500)
+            gameOverFun()
         }
     }
     
@@ -65,9 +68,8 @@ const GamePage = () => {
                 carrot = Math.floor((Math.random() * 10) + 1)
                 timing = timings[Math.floor(Math.random() * 10)]
             }
-            if(newGameVariable) {
+            if(newGameVariable.current) {
                 clearInterval(flow)
-                newGameVariable = false
             } 
         },Math.floor((Math.random() * 1000) + 200))
     }
@@ -94,9 +96,8 @@ const GamePage = () => {
                 carrot = Math.floor((Math.random() * 10) + 1)
                 timing = timings[Math.floor(Math.random() * 10)]
             }
-            if(newGameVariable) {
+            if(newGameVariable.current) {
                 clearInterval(flow)
-                newGameVariable = false
             } 
         },Math.floor((Math.random() * 1000) + 200))
     }
@@ -123,9 +124,8 @@ const GamePage = () => {
                 carrot = Math.floor((Math.random() * 10) + 1)
                 timing = timings[Math.floor(Math.random() * 10)]
             }
-            if(newGameVariable) {
+            if(newGameVariable.current) {
                 clearInterval(flow)
-                newGameVariable = false
             }
         },Math.floor((Math.random() * 1000) + 200))
     }
@@ -152,9 +152,8 @@ const GamePage = () => {
                 carrot = Math.floor((Math.random() * 10) + 1)
                 timing = timings[Math.floor(Math.random() * 10)]
             }
-            if(newGameVariable) {
+            if(newGameVariable.current) {
                 clearInterval(flow)
-                newGameVariable = false
             }
         },Math.floor((Math.random() * 1000) + 200))
     }
@@ -181,9 +180,8 @@ const GamePage = () => {
                 carrot = Math.floor((Math.random() * 10) + 1)
                 timing = timings[Math.floor(Math.random() * 10)]
             }
-            if(newGameVariable) {
+            if(newGameVariable.current) {
                 clearInterval(flow)
-                newGameVariable = false
             }
         },Math.floor((Math.random() * 1000) + 200))
     }
@@ -210,9 +208,8 @@ const GamePage = () => {
                 carrot = Math.floor((Math.random() * 10) + 1)
                 timing = timings[Math.floor(Math.random() * 10)]
             }
-            if(newGameVariable) {
+            if(newGameVariable.current) {
                 clearInterval(flow)
-                newGameVariable = false
             }
         },Math.floor((Math.random() * 1000) + 200))
     }
@@ -225,8 +222,11 @@ const GamePage = () => {
             rabbitRef.current.style.display = 'none'
             bombRef.current.style.left =  rabbitRef.current.style.left
             bombRef.current.style.display = 'inline-flex'
-            setLives((prevState) => { return prevState-1})
+            livesRemaining(length--)
             setTimeout(resumeGame, 3000)
+        } else if (rabbitRef.current.style.left === carrotMargin && source.includes('/carrots.png')) {
+            scoreUpdate+=50
+            setScore(scoreUpdate)
         }
     }
 
@@ -251,29 +251,33 @@ const GamePage = () => {
     };
 
     const storeHighScore = () => {
+        console.log('Reached HS')
         let storeScore = null
         if("highscore" in localStorage){
             let highScoreData = JSON.parse(localStorage.getItem("highscore"));
-            // console.log('initial', highScoreData)
+            console.log('initial', highScoreData)
             if(highScoreData.length >=5 && highScoreData[highScoreData.length-1].score > score) {
                 console.log(1)
                 return
             }
-            // highScoreData.push({name: nameInput.current.value, score: score})
+            highScoreData.push({name: nameInput.current.value, score: scoreUpdate})
             highScoreData.sort(sortByScore)
             storeScore = highScoreData.slice(0,5)
         } else {
             storeScore = [{name: nameInput.current.value, score: score}]
         }
+        console.log(storeScore)
         localStorage.setItem("highscore", JSON.stringify(storeScore))
     }
 
     const gameOverFun = () => {
+        rabbitRef.current.style.left = '0px'
+        rabbitRef.current.style.display = 'none'
+        newGameVariable.current = true
+        storeHighScore()
         gameOverPageRef.current.style.display = "block"
         scoreAreaRef.current.style.display = 'none'
         gameSectionRef.current.style.opacity = 0.5
-        rabbitRef.current.style.display = 'none'
-        rabbitRef.current.style.left = '0px'
     }
 
     const pausePressed = () => {
@@ -291,6 +295,7 @@ const GamePage = () => {
         if(!nameInput.current.value) {
             spanRef.current.style.display = 'block'
         } else {
+            livesRemaining(length--)
             scoreAreaRef.current.style.display = 'inline-flex'
             bombRef.current.style.display = 'none'
             buttonRef.current.style.display = 'none'
@@ -325,7 +330,7 @@ const GamePage = () => {
             <div id='all'>
                 <div className='score-area' ref={scoreAreaRef}>
                     <div className='score-area__score'><h4>Score : {score}</h4></div>
-                    <div className='score-area__heart'>{livesRemaining(lives)}</div>
+                    <div className='score-area__heart'>{lives}</div>
                     <i onClick= {() => pausePressed()} className="fas fa-pause fa-3x pauseBtn"></i>
                 </div>
                 <section id='game-section' ref={gameSectionRef}>

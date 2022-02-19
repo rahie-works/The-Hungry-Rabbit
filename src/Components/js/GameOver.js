@@ -16,7 +16,7 @@ const GameOver = (props) => {
             const highScoreData = JSON.parse(localStorage.getItem("highscore"))
             const highScoreDisplay = highScoreData.map(element => {
                 console.log('Element :', element)
-                return <h4>{element.name} : {element.score}</h4>
+                return <h5>{element.name} : {element.score}</h5>
             });
             setHS(highScoreDisplay)
         }
@@ -40,7 +40,7 @@ const GameOver = (props) => {
                 </div>
             </div>
             <div className="hs__card" ref={hsRef}>
-                <h4>High Score</h4>
+                <h3>High Score</h3>
                 {hs}
                 <div className='actions'>
                     <button onClick={newGame}>Back</button>
