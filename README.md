@@ -1,6 +1,6 @@
 # The-Hungry-Rabbit
 
-#----On Production ----#
+#----On Development 83% ----#
 
 The game is based on feeding the hungry rabbit by directing the rabbit towards the carrot. The bomb if fell on the rabbit cost a life each time.
 
